@@ -78,7 +78,7 @@
       <GenerateCodeBehindCommand>$(SpecFlowToolsPath)$(SpecFlowToolExe) generateall "$(SpecFlowShadowProject)"</GenerateCodeBehindCommand>
     </PropertyGroup>
     
-    <Exec Command="$(GenerateCodeBehindCommand)" WorkingDirectory="$(MSBuildProjectDirectory)" />
+    <Exec Command="$(GenerateCodeBehindCommand)" WorkingDirectory="$(MSBuildProjectDirectory)" StandardOutputImportance="Low" />
 
     <Error Condition="!Exists(@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity).cs'))" Text="Failed to generate feature file code behind for @(SpecFlowFeature->'%(Identity)')" />
 

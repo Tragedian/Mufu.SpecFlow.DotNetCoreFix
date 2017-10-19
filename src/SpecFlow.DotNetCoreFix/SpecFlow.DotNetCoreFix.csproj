@@ -1,14 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.0-alpha</Version>
+    <BuildOutputTargetFolder>build\</BuildOutputTargetFolder>
+    <Version>0.1.7-alpha</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="build\SpecFlow.DotNetCoreFix.targets" PackagePath="build\" />
+    <Content Include="build\SpecFlow.DotNetCoreFix.tasks" PackagePath="build\" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Build.Framework" Version="15.3.409" />
     <PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.3.409" />
+    <!-- marks all packages as 'local only' so they don't end up in the nuspec -->
+    <PackageReference Update="@(PackageReference)" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>

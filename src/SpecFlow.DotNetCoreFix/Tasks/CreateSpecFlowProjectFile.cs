@@ -2,9 +2,9 @@
 using Microsoft.Build.Utilities;
 using System.Xml;
 
-namespace SpecFlow.DotNetCoreFix
+namespace SpecFlow.DotNetCoreFix.Tasks
 {
-    public class CreateSpecFlowProjectFileTask : Task
+    public class CreateSpecFlowProjectFile : Task
     {
         [Required]
         public ITaskItem OutputFile { get; set; }
