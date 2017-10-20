@@ -11,25 +11,25 @@ Install the latest release candidate from NuGet:
 
 If you're running SpecFlow on anything other than NUnit, you need to use version 2.2.0 of SpecFlow or newer and have a `specflow.json` file in your test project. This file must be set to be copied to your output folder on every build and is used to configure your test runner (e.g. xunit):
 
-    ```json
-    {
-      "specflow": {
+```json
+{
+    "specflow": {
         "unitTestProvider": {
-          "name": "xunit"
+            "name": "xunit"
         }
-      }
-	}
-    ```
+    }
+}
+```
 
 You must also add this property your test project to make sure your copy of the SpecFlow assembly sits in your output folder alongside the `specflow.json` file.
 
-    ```xml
-    <PropertyGroup>
-      <!-- ... -->
-      <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-      <!-- ... -->
-    </PropertyGroup>
-    ```
+```xml
+<PropertyGroup>
+    <!-- ... -->
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <!-- ... -->
+</PropertyGroup>
+```
 
 ## How it works
 
