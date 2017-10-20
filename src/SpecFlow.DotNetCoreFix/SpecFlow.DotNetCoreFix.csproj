@@ -4,8 +4,12 @@
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <BuildOutputTargetFolder>build\</BuildOutputTargetFolder>
-    <Version>1.0.0-beta</Version>
-    <Description>A fix for SpecFlow to enable easy running on .NET Core.</Description>
+    <Version>1.0.0-rc1</Version>
+    <Description>Lets you run SpecFlow tests on .NET Core 2.0</Description>
+    <PackageLicenseUrl>https://github.com/Tragedian/SpecFlow.DotNetCoreFix/tree/master/LICENSE.txt</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/Tragedian/SpecFlow.DotNetCoreFix</RepositoryUrl>
+    <Company />
+    <Authors>Paul Turner</Authors>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,10 +18,21 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Build.Framework" Version="15.3.409" />
-    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.3.409" />
-    <!-- marks all packages as 'local only' so they don't end up in the nuspec -->
+    <PackageReference Include="Microsoft.Build.Framework" Version="15.3.409">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+    
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.3.409">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+    
     <PackageReference Update="@(PackageReference)" PrivateAssets="All" />
+
+    <PackageReference Include="SpecFlow" Version="[2.0.0,]">
+      <NoWarn>NU1701</NoWarn>
+    </PackageReference>
+    
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="[4.4.0,]" />
   </ItemGroup>
 
 </Project>
