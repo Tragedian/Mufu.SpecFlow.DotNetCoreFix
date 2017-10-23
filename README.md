@@ -7,7 +7,7 @@ Currently, SpecFlow doesn't officially support .NET Core, despite ongoing work i
 ## Installation
 Install the latest release candidate from NuGet:
 
-    Install-Package SpecFlow.DotNetCoreFix -IncludePrerelease
+    Install-Package Mufu.SpecFlow.DotNetCoreFix -IncludePrerelease
 
 If you're running SpecFlow on anything other than NUnit, you need to use version 2.2.0 of SpecFlow or newer and have a `specflow.json` file in your test project. This file must be set to be copied to your output folder on every build and is used to configure your test runner (e.g. xunit):
 

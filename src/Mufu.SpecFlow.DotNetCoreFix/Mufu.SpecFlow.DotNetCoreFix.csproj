@@ -6,15 +6,15 @@
     <BuildOutputTargetFolder>build\</BuildOutputTargetFolder>
     <Version>1.0.0-rc1</Version>
     <Description>Lets you run SpecFlow tests on .NET Core 2.0</Description>
-    <PackageLicenseUrl>https://github.com/Tragedian/SpecFlow.DotNetCoreFix/tree/master/LICENSE.txt</PackageLicenseUrl>
-    <RepositoryUrl>https://github.com/Tragedian/SpecFlow.DotNetCoreFix</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/Tragedian/Mufu.SpecFlow.DotNetCoreFix/tree/master/LICENSE.txt</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/Tragedian/Mufu.SpecFlow.DotNetCoreFix</RepositoryUrl>
     <Company />
     <Authors>Paul Turner</Authors>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="build\SpecFlow.DotNetCoreFix.targets" PackagePath="build\" />
-    <Content Include="build\SpecFlow.DotNetCoreFix.tasks" PackagePath="build\" />
+    <Content Include="build\Mufu.SpecFlow.DotNetCoreFix.targets" PackagePath="build\" />
+    <Content Include="build\Mufu.SpecFlow.DotNetCoreFix.tasks" PackagePath="build\" />
   </ItemGroup>
 
   <ItemGroup>

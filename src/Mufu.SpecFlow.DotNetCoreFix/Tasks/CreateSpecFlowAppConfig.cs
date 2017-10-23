@@ -2,7 +2,7 @@
 using Microsoft.Build.Utilities;
 using System.Xml;
 
-namespace SpecFlow.DotNetCoreFix.Tasks
+namespace Mufu.SpecFlow.DotNetCoreFix.Tasks
 {
     public class CreateSpecFlowAppConfig : Task
     {
