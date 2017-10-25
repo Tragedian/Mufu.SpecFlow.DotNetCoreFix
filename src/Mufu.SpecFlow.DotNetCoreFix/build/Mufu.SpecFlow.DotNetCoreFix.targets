@@ -31,7 +31,7 @@
     <PropertyGroup>
       <SpecFlowShadowProjectPath>$(IntermediateOutputPath)SpecFlowShadowProject\</SpecFlowShadowProjectPath>
       <SpecFlowAppConfig>$(SpecFlowShadowProjectPath)app.config</SpecFlowAppConfig>
-      <SpecFlowShadowProject>$(SpecFlowShadowProjectPath)$(MSBuildProjectName).csproj</SpecFlowShadowProject>
+      <SpecFlowShadowProject>$(SpecFlowShadowProjectPath)$(MSBuildProjectName).shadowproj</SpecFlowShadowProject>
     </PropertyGroup>
   </Target>
 
