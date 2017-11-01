@@ -2,7 +2,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <Import Project="Mufu.SpecFlow.DotNetCoreFix.tasks"/>
-    
+
   <!--
   Removes the SpecFlow shadow project as part of the clean process.
   -->
@@ -19,14 +19,23 @@
     <RemoveDir Directories="$(SpecFlowShadowProjectPath)" />
   </Target>
 
-  <Target Name="GetSpecFlowFeatureFiles">
+  <!--
+  Gets the feature files referenced by the project.
+  -->
+  <Target Name="GetSpecFlowFeatureFiles" DependsOnTargets="SetSpecFlowShadowProjectLocations">
 
     <ItemGroup>
-      <SpecFlowFeature Include="@(None)" Condition="'%(Extension)' == '.feature'" />
+      <SpecFlowFeature Include="@(None)" Condition="'%(Extension)' == '.feature'">
+        <CodeBehind>%(Identity).cstemp</CodeBehind>
+        <ShadowCodeBehind>$(SpecFlowShadowProjectPath)%(Identity).cs</ShadowCodeBehind>
+      </SpecFlowFeature>
     </ItemGroup>
-    
+
   </Target>
 
+  <!--
+  Sets the locations used by the SpecFlow shadow project.
+  -->
   <Target Name="SetSpecFlowShadowProjectLocations">
     <PropertyGroup>
       <SpecFlowShadowProjectPath>$(IntermediateOutputPath)SpecFlowShadowProject\</SpecFlowShadowProjectPath>
@@ -36,10 +45,10 @@
   </Target>
 
   <!--
-  Creates the SpecFlow shadow project structure needed for the SpecFlow command-line tool.
+  Creates the SpecFlow shadow project's app.config file needed for the SpecFlow command-line tool.
   -->
-  <Target Name="CreateSpecFlowShadowProject" DependsOnTargets="GetSpecFlowFeatureFiles;SetSpecFlowShadowProjectLocations" Inputs="@(SpecFlowFeature)" Outputs="@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity)');$(SpecFlowAppConfig);$(SpecFlowShadowProject)">
-    
+  <Target Name="CreateSpecFlowShadowAppConfig" DependsOnTargets="GetSpecFlowFeatureFiles;SetSpecFlowShadowProjectLocations">
+
     <PropertyGroup>
       <SpecFlowUnitTestProvider Condition="'%(PackageReference.Identity)' == 'NUnit'">nunit</SpecFlowUnitTestProvider>
       <SpecFlowUnitTestProvider Condition="'%(PackageReference.Identity)' == 'MSTest.TestFramework'">mstest</SpecFlowUnitTestProvider>
@@ -55,17 +64,24 @@
     <MakeDir Directories="$(SpecFlowShadowProjectPath)" />
 
     <CreateSpecFlowAppConfig OutputFile="$(SpecFlowAppConfig)" UnitTestProvider="$(SpecFlowUnitTestProvider)" />
-    
+
+  </Target>
+
+  <!--
+  Creates the SpecFlow shadow project file needed to produce the build.
+  -->
+  <Target Name="CreateSpecFlowShadowProjectFile" DependsOnTargets="GetSpecFlowFeatureFiles;SetSpecFlowShadowProjectLocations" Inputs="@(SpecFlowFeature)" Outputs="$(SpecFlowShadowProject)">
+
+    <MakeDir Directories="$(SpecFlowShadowProjectPath)" />
+
     <CreateSpecFlowProjectFile FeatureFiles="@(SpecFlowFeature)" OutputFile="$(SpecFlowShadowProject)" />
 
-    <Copy SourceFiles="@(SpecFlowFeature)" DestinationFiles="@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity)')" />
-    
   </Target>
-  
+
   <!--
   Generates the SpecFlow code-behind files.
   -->
-  <Target Name="GenerateSpecFlowCodeBehindCsFiles" BeforeTargets="BeforeBuild" DependsOnTargets="CreateSpecFlowShadowProject" Inputs="@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity)')" Outputs="@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity).cs')">
+  <Target Name="GenerateSpecFlowCodeBehindCsFiles" DependsOnTargets="CreateSpecFlowShadowProjectFile;CreateSpecFlowShadowAppConfig" Inputs="@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity)')" Outputs="@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity).cs')">
 
     <ItemGroup>
       <SpecFlowPackageReference Include="@(PackageReference)" Condition="'%(Identity)' == 'SpecFlow'" />
@@ -77,14 +93,34 @@
       <SpecFlowToolExe>specflow.exe</SpecFlowToolExe>
       <GenerateCodeBehindCommand>$(SpecFlowToolsPath)$(SpecFlowToolExe) generateall "$(SpecFlowShadowProject)"</GenerateCodeBehindCommand>
     </PropertyGroup>
-    
+
+    <Copy SourceFiles="@(SpecFlowFeature)" DestinationFiles="@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity)')" />
+
     <Exec Command="$(GenerateCodeBehindCommand)" WorkingDirectory="$(MSBuildProjectDirectory)" StandardOutputImportance="Low" />
 
-    <Error Condition="!Exists(@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity).cs'))" Text="Failed to generate feature file code behind for @(SpecFlowFeature->'%(Identity)')" />
+    <Error Condition="!Exists(@(SpecFlowFeature->'%(ShadowCodeBehind)'))" Text="Failed to generate feature file code behind for @(SpecFlowFeature->'%(Identity)')" />
+
+  </Target>
+
+  <!-- Adds the generated files to the build as local hidden files before compile. -->
+  <Target Name="AddSpecFlowCodeBehindToBuild" BeforeTargets="BeforeBuild" DependsOnTargets="GenerateSpecFlowCodeBehindCsFiles">
+
+    <Copy SourceFiles="@(SpecFlowFeature->'%(ShadowCodeBehind)')" DestinationFiles="@(SpecFlowFeature->'%(CodeBehind)')" />
 
     <ItemGroup>
-      <Compile Include="@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity).cs')" />
+      <Compile Include="@(SpecFlowFeature->'%(CodeBehind)')" />
     </ItemGroup>
+
+  </Target>
+
+  <!-- Removes the generated code-behind file after the compile completes. -->
+  <Target Name="CleanUpSpecFlowCodeBehind" BeforeTargets="BeforeClean" AfterTargets="Compile">
+
+    <ItemGroup>
+      <SpecFlowFeatureCodeBehind Include="**/*.feature.cstemp" />
+    </ItemGroup>
+
+    <Delete Files="@(SpecFlowFeatureCodeBehind)" />
 
   </Target>
 

@@ -4,13 +4,13 @@
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <BuildOutputTargetFolder>build\</BuildOutputTargetFolder>
-    <Version>1.0.0-rc3</Version>
+    <Version>1.0.0-rc4</Version>
     <Description>Lets you run SpecFlow tests on .NET Core 2.0</Description>
     <PackageLicenseUrl>https://github.com/Tragedian/Mufu.SpecFlow.DotNetCoreFix/tree/master/LICENSE.txt</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/Tragedian/Mufu.SpecFlow.DotNetCoreFix</RepositoryUrl>
     <Company />
     <Authors>Paul Turner</Authors>
-    <PackageReleaseNotes>Fixed an issue where build servers configured to look for **/*.csproj will find the shadow project .csproj file in the obj folder of older builds and attempt to build as a normal project.</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixes an issue where the compiled SpecFlow output references the source feature files in the /obj folder instead of the original solution.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
