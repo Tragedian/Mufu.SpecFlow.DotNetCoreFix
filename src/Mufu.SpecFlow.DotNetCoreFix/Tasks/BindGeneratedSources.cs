@@ -3,6 +3,7 @@ using Microsoft.Build.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security;
 using System.Text.RegularExpressions;
 using System.Threading;
 
@@ -31,12 +32,32 @@ namespace Mufu.SpecFlow.DotNetCoreFix.Tasks
         public BindGeneratedSources()
             : base(AssemblyResources.PrimaryResources)
         {
-
         }
 
         private bool ValidateInputs()
         {
-            // TODO: Add validation for retry settings.
+            if (Retries < 0)
+            {
+                Log.LogErrorWithCodeFromResources("BindGeneratedSources.InvalidRetryCount", Retries);
+                return false;
+            }
+
+            if (RetryDelayMilliseconds < 0)
+            {
+                Log.LogErrorWithCodeFromResources("BindGeneratedSources.InvalidRetryDelay", RetryDelayMilliseconds);
+                return false;
+            }
+
+            if (GeneratedSources.Length != FeatureFiles.Length)
+            {
+                Log.LogErrorWithCodeFromResources(
+                    "BindGeneratedSources.TwoVectorsMustHaveSameLength",
+                    GeneratedSources.Length,
+                    FeatureFiles.Length,
+                    nameof(GeneratedSources),
+                    nameof(FeatureFiles));
+                return false;
+            }
 
             return true;
         }
@@ -86,12 +107,23 @@ namespace Mufu.SpecFlow.DotNetCoreFix.Tasks
                     if (retryCount < Retries)
                     {
                         retryCount++;
-                        // TODO: Log warning.
+                        Log.LogWarningWithCodeFromResources(
+                            "BindGeneratedSources.Retrying",
+                            generatedFile.ItemSpec,
+                            sourceFile.ItemSpec,
+                            retryCount,
+                            RetryDelayMilliseconds,
+                            ex.Message);
+
                         Thread.Sleep(RetryDelayMilliseconds);
                     }
                     else if (Retries > 0)
                     {
-                        // TODO: Log error - exceeded retries.
+                        Log.LogErrorWithCodeFromResources(
+                            "BindGeneratedSources.ExceededRetries",
+                            generatedFile.ItemSpec,
+                            sourceFile.ItemSpec,
+                            Retries);
                         throw;
                     }
                     else
@@ -105,7 +137,7 @@ namespace Mufu.SpecFlow.DotNetCoreFix.Tasks
         private bool BindGeneratedFile(ITaskItem generatedFile, ITaskItem sourceFile)
         {
             var generatedFilePullPath = generatedFile.GetMetadata("FullPath");
-            var featureFileFullPath = sourceFile.GetMetadata("FullPath");
+            var sourceFileFullPath = sourceFile.GetMetadata("FullPath");
 
             try
             {
@@ -124,7 +156,7 @@ namespace Mufu.SpecFlow.DotNetCoreFix.Tasks
                                 match =>
                                 {
                                     replaceFileContents = true;
-                                    return string.Join("", match.Groups[1].Value, featureFileFullPath, match.Groups[3].Value);
+                                    return string.Join("", match.Groups[1].Value, sourceFileFullPath, match.Groups[3].Value);
                                 });
 
                             lines.Add(replacedLine);
@@ -162,7 +194,11 @@ namespace Mufu.SpecFlow.DotNetCoreFix.Tasks
 
         private bool IsIoRelatedException(Exception ex)
         {
-            throw new NotImplementedException();
+            return ex is UnauthorizedAccessException
+                || ex is NotSupportedException
+                || (ex is ArgumentException && !(ex is ArgumentNullException))
+                || ex is SecurityException
+                || ex is IOException;
         }
     }
 }

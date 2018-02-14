@@ -121,6 +121,25 @@
     <value>Bound file "{0}" to feature file "{1}". </value>
     <comment>{0} and {1} are paths.</comment>
   </data>
+  <data name="BindGeneratedSources.ExceededRetries" xml:space="preserve">
+    <value>MFB1012: Could not bind "{0}" to "{1}". Exceeded retry count of {2}. Failed.</value>
+    <comment>{0} and {1} are paths. {2} is a number.</comment>
+  </data>
+  <data name="BindGeneratedSources.InvalidRetryCount" xml:space="preserve">
+    <value>MFB1008: {0} is an invalid retry count. Value must not be negative.</value>
+    <comment>{0} is the number set by the caller</comment>
+  </data>
+  <data name="BindGeneratedSources.InvalidRetryDelay" xml:space="preserve">
+    <value>MFB1009: {0} is an invalid retry delay. Value must not be negative.</value>
+  </data>
+  <data name="BindGeneratedSources.PropertiesMustHaveSameLength" xml:space="preserve">
+    <value>MFB1010: "{2}" refers to {0} item(s), and "{3}" refers to {1} item(s). They must have the same number of items.</value>
+    <comment>{2} and {3} are the names of the properties being examined. {0} is the number of items in property {2}. {1} is the number of items in property {3}.</comment>
+  </data>
+  <data name="BindGeneratedSources.Retrying" xml:space="preserve">
+    <value>MFB1011: Could not bind "{0}" to "{1}". Beginning retry {2} in {3}ms. {4}</value>
+    <comment>{0} and {1} are paths. {2} and {3} are numbers. {4} is an optional localized message.</comment>
+  </data>
   <data name="CreateSpecFlowAppConfig.NeedsOutputAppConfigFile" xml:space="preserve">
     <value>MFB1004: No output app config file specified for CreateSpecFlowAppConfig. Please supply {0}.</value>
     <comment>{0} is the name of the build property that needs to be supplied.</comment>
