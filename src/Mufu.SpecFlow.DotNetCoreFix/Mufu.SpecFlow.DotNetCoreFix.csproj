@@ -4,7 +4,7 @@
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <BuildOutputTargetFolder>build\</BuildOutputTargetFolder>
-    <Version>1.0.0-rc5</Version>
+    <Version>1.0.0</Version>
     <Description>Lets you run SpecFlow tests on .NET Core 2.0</Description>
     <PackageLicenseUrl>https://github.com/Tragedian/Mufu.SpecFlow.DotNetCoreFix/tree/master/LICENSE.txt</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/Tragedian/Mufu.SpecFlow.DotNetCoreFix</RepositoryUrl>
