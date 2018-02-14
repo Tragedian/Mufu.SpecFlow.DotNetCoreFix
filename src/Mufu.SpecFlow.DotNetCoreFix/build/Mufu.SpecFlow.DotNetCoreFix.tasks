@@ -4,9 +4,10 @@
   <PropertyGroup>
     <RuntimeTarget>netstandard2.0</RuntimeTarget>
     <RuntimeTarget Condition="'$(MSBuildRuntimeType)' != 'Core'">net461</RuntimeTarget>
-    <TaskAssembly>$(MSBuildThisFileDirectory)$(RuntimeTarget)\Mufu.SpecFlow.DotNetCoreFix.dll</TaskAssembly>
+    <TaskAssembly>$(MSBuildThisFileDirectory)..\bin\debug\$(RuntimeTarget)\Mufu.SpecFlow.DotNetCoreFix.dll</TaskAssembly>
   </PropertyGroup>
-  
+
+  <UsingTask TaskName="Mufu.SpecFlow.DotNetCoreFix.Tasks.BindGeneratedSources" AssemblyFile="$(TaskAssembly)"/>
   <UsingTask TaskName="Mufu.SpecFlow.DotNetCoreFix.Tasks.CreateSpecFlowAppConfig" AssemblyFile="$(TaskAssembly)"/>
   <UsingTask TaskName="Mufu.SpecFlow.DotNetCoreFix.Tasks.CreateSpecFlowProjectFile" AssemblyFile="$(TaskAssembly)"/>
 

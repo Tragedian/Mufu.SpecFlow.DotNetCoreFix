@@ -4,7 +4,7 @@
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <BuildOutputTargetFolder>build\</BuildOutputTargetFolder>
-    <Version>1.0.0-rc4a</Version>
+    <Version>1.0.0-rc5</Version>
     <Description>Lets you run SpecFlow tests on .NET Core 2.0</Description>
     <PackageLicenseUrl>https://github.com/Tragedian/Mufu.SpecFlow.DotNetCoreFix/tree/master/LICENSE.txt</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/Tragedian/Mufu.SpecFlow.DotNetCoreFix</RepositoryUrl>
@@ -14,26 +14,37 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Build.Framework" Version="15.3.409">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.3.409">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+
+    <PackageReference Update="@(PackageReference)" PrivateAssets="All" />
+
+    <PackageReference Include="SpecFlow" Version="[2.2.0,]">
+      <NoWarn>NU1701</NoWarn>
+    </PackageReference>
+
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="[4.4.0,]" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="build\Mufu.SpecFlow.DotNetCoreFix.targets" PackagePath="build\" />
     <Content Include="build\Mufu.SpecFlow.DotNetCoreFix.tasks" PackagePath="build\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Build.Framework" Version="15.3.409">
-      <PrivateAssets>All</PrivateAssets>
-    </PackageReference>
-    
-    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.3.409">
-      <PrivateAssets>All</PrivateAssets>
-    </PackageReference>
-    
-    <PackageReference Update="@(PackageReference)" PrivateAssets="All" />
-
-    <PackageReference Include="SpecFlow" Version="[2.0.0,]">
-      <NoWarn>NU1701</NoWarn>
-    </PackageReference>
-    
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="[4.4.0,]" />
-  </ItemGroup>
+  <!--<ItemGroup>
+    <_PackageFiles Include="$(OutputPath)net461\Mufu.SpecFlow.DotNetCoreFix.SpecFlowPlugin.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>$(BuildOutputTargetFolder)net461\</PackagePath>
+    </_PackageFiles>
+    <_PackageFiles Include="$(OutputPath)netstandard2.0\Mufu.SpecFlow.DotNetCoreFix.SpecFlowPlugin.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>$(BuildOutputTargetFolder)netstandard2.0\</PackagePath>
+    </_PackageFiles>
+  </ItemGroup>-->
 
 </Project>

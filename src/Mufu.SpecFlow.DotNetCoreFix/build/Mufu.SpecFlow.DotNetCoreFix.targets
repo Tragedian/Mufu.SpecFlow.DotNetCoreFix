@@ -52,11 +52,15 @@
       <SpecFlowUnitTestProvider Condition="'$(SpecFlowUnitTestProvider)' == ''">nunit</SpecFlowUnitTestProvider>
     </PropertyGroup>
 
+    <ItemGroup>
+      <SpecFlowDotNetCoreFixPlugin Include="$(MSBuildThisFileDirectory)$(RuntimeTarget)\Mufu.SpecFlow.DotNetCoreFix.SpecFlowPlugin.dll" />
+    </ItemGroup>
+
     <MakeDir Directories="$(SpecFlowShadowProjectPath)" />
 
-    <CreateSpecFlowAppConfig OutputFile="$(SpecFlowAppConfig)" UnitTestProvider="$(SpecFlowUnitTestProvider)" />
+    <CreateSpecFlowAppConfig OutputAppConfigFile="$(SpecFlowAppConfig)" UnitTestProvider="$(SpecFlowUnitTestProvider)" />
     
-    <CreateSpecFlowProjectFile FeatureFiles="@(SpecFlowFeature)" OutputFile="$(SpecFlowShadowProject)" />
+    <CreateSpecFlowProjectFile FeatureFiles="@(SpecFlowFeature)" OutputProjectFile="$(SpecFlowShadowProject)" />
 
     <Copy SourceFiles="@(SpecFlowFeature)" DestinationFiles="@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity)')" />
     
@@ -85,6 +89,10 @@
     <ItemGroup>
       <Compile Include="@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity).cs')" />
     </ItemGroup>
+
+    <BindGeneratedSources
+      GeneratedSources="@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity).cs')"
+      FeatureFiles="@(SpecFlowFeature)" />
 
   </Target>
 

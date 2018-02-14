@@ -7,13 +7,35 @@ namespace Mufu.SpecFlow.DotNetCoreFix.Tasks
     public class CreateSpecFlowProjectFile : Task
     {
         [Required]
-        public ITaskItem OutputFile { get; set; }
+        public ITaskItem OutputProjectFile { get; set; }
 
         [Required]
         public ITaskItem[] FeatureFiles { get; set; }
 
+        public CreateSpecFlowProjectFile()
+            : base(AssemblyResources.PrimaryResources)
+        {
+
+        }
+
+        private bool ValidateInputs()
+        {
+            if (OutputProjectFile == null)
+            {
+                Log.LogErrorWithCodeFromResources("CreateSpecFlowProjectFile.NeedsOutputProjectFile", nameof(OutputProjectFile));
+                return false;
+            }
+
+            return true;
+        }
+
         public override bool Execute()
         {
+            if (!ValidateInputs())
+            {
+                return false;
+            }
+
             const string ns = "http://schemas.microsoft.com/developer/msbuild/2003";
 
             var settings = new XmlWriterSettings
@@ -21,7 +43,7 @@ namespace Mufu.SpecFlow.DotNetCoreFix.Tasks
                 Indent = true
             };
 
-            using (var w = XmlWriter.Create(OutputFile.ItemSpec, settings))
+            using (var w = XmlWriter.Create(OutputProjectFile.ItemSpec, settings))
             {
                 w.WriteStartElement("Project", ns);
                 w.WriteAttributeString("ToolsVersion", "14.0");
@@ -41,20 +63,23 @@ namespace Mufu.SpecFlow.DotNetCoreFix.Tasks
                 w.WriteAttributeString("Include", "app.config");
                 w.WriteEndElement();
 
-                foreach (var featureFile in FeatureFiles)
+                if (FeatureFiles != null)
                 {
-                    w.WriteStartElement("None", ns);
-                    w.WriteAttributeString("Include", featureFile.ItemSpec);
+                    foreach (var featureFile in FeatureFiles)
+                    {
+                        w.WriteStartElement("None", ns);
+                        w.WriteAttributeString("Include", featureFile.ItemSpec);
 
-                    w.WriteStartElement("Generator", ns);
-                    w.WriteValue("SpecFlowSingleFileGenerator");
-                    w.WriteEndElement();
+                        w.WriteStartElement("Generator", ns);
+                        w.WriteValue("SpecFlowSingleFileGenerator");
+                        w.WriteEndElement();
 
-                    w.WriteStartElement("LastGenOutput", ns);
-                    w.WriteValue(featureFile.ItemSpec + ".cs");
-                    w.WriteEndElement();
+                        w.WriteStartElement("LastGenOutput", ns);
+                        w.WriteValue(featureFile.ItemSpec + ".cs");
+                        w.WriteEndElement();
 
-                    w.WriteEndElement();
+                        w.WriteEndElement();
+                    }
                 }
 
                 w.WriteEndElement();
