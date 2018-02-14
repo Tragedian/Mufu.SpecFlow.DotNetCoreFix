@@ -4,13 +4,13 @@
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <BuildOutputTargetFolder>build\</BuildOutputTargetFolder>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Description>Lets you run SpecFlow tests on .NET Core 2.0</Description>
     <PackageLicenseUrl>https://github.com/Tragedian/Mufu.SpecFlow.DotNetCoreFix/tree/master/LICENSE.txt</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/Tragedian/Mufu.SpecFlow.DotNetCoreFix</RepositoryUrl>
     <Company />
     <Authors>Paul Turner</Authors>
-    <PackageReleaseNotes>Reverted changes made to copying cstemp files into directory structure to avoid issues with files not being copied reliably.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added full support for binding generated test files to their source  .feature files.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
