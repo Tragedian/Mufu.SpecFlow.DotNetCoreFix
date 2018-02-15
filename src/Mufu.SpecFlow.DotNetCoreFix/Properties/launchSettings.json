@@ -3,8 +3,8 @@
     "Mufu.SpecFlow.DotNetCoreFix": {
       "commandName": "Executable",
       "executablePath": "C:\\Program Files\\dotnet\\dotnet.exe",
-      "commandLineArgs": "build --no-restore --no-dependencies --no-incremental",
-      "workingDirectory": "C:\\Users\\Paul\\Source\\Repos\\Mufu.SpecFlow.DotNetCoreFix\\test\\Mufu.SpecFlow.DotNetCoreFix.Test",
+      "commandLineArgs": "build --no-restore --no-dependencies --no-incremental -p:MufuSpecFlowTaskAssembly=..\\bin\\Debug\\netstandard2.0\\Mufu.SpecFlow.DotNetCoreFix.dll",
+      "workingDirectory": "..\\..\\test\\Mufu.SpecFlow.DotNetCoreFix.Test",
       "environmentVariables": {
         "MSBUILDDEBUGONSTART": "2"
       }

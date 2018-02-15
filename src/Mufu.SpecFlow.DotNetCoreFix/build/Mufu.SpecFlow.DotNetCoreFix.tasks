@@ -4,11 +4,11 @@
   <PropertyGroup>
     <RuntimeTarget>netstandard2.0</RuntimeTarget>
     <RuntimeTarget Condition="'$(MSBuildRuntimeType)' != 'Core'">net461</RuntimeTarget>
-    <TaskAssembly>$(MSBuildThisFileDirectory)..\bin\debug\$(RuntimeTarget)\Mufu.SpecFlow.DotNetCoreFix.dll</TaskAssembly>
+    <MufuSpecFlowTaskAssembly Condition="'$(MufuSpecFlowTaskAssembly)' == ''">$(MSBuildThisFileDirectory)$(RuntimeTarget)\Mufu.SpecFlow.DotNetCoreFix.dll</MufuSpecFlowTaskAssembly>
   </PropertyGroup>
 
-  <UsingTask TaskName="Mufu.SpecFlow.DotNetCoreFix.Tasks.BindGeneratedSources" AssemblyFile="$(TaskAssembly)"/>
-  <UsingTask TaskName="Mufu.SpecFlow.DotNetCoreFix.Tasks.CreateSpecFlowAppConfig" AssemblyFile="$(TaskAssembly)"/>
-  <UsingTask TaskName="Mufu.SpecFlow.DotNetCoreFix.Tasks.CreateSpecFlowProjectFile" AssemblyFile="$(TaskAssembly)"/>
+  <UsingTask TaskName="Mufu.SpecFlow.DotNetCoreFix.Tasks.BindGeneratedSources" AssemblyFile="$(MufuSpecFlowTaskAssembly)"/>
+  <UsingTask TaskName="Mufu.SpecFlow.DotNetCoreFix.Tasks.CreateSpecFlowAppConfig" AssemblyFile="$(MufuSpecFlowTaskAssembly)"/>
+  <UsingTask TaskName="Mufu.SpecFlow.DotNetCoreFix.Tasks.CreateSpecFlowProjectFile" AssemblyFile="$(MufuSpecFlowTaskAssembly)"/>
 
 </Project>
