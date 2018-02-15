@@ -10,7 +10,7 @@
     <RepositoryUrl>https://github.com/Tragedian/Mufu.SpecFlow.DotNetCoreFix</RepositoryUrl>
     <Company />
     <Authors>Paul Turner</Authors>
-    <PackageReleaseNotes>Added full support for binding generated test files to their source  .feature files.</PackageReleaseNotes>
+    <PackageReleaseNotes>Fix major bug in task-loading</PackageReleaseNotes>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
