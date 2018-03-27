@@ -76,10 +76,12 @@
     </ItemGroup>
 
     <PropertyGroup>
-      <SpecFlowPackageDir>$(NuGetPackageRoot)@(SpecFlowPackageReference->'%(Identity)\%(Version)')\</SpecFlowPackageDir>
+      <NuGetPackagesDir>$(NuGetPackageRoot)</NuGetPackagesDir>
+      <NuGetPackagesDir Condition="!HasTrailingSlash('$(NuGetPackagesDir)')">$(NuGetPackagesDir)\</NuGetPackagesDir>
+      <SpecFlowPackageDir>$(NuGetPackagesDir)@(SpecFlowPackageReference->'%(Identity)\%(Version)')\</SpecFlowPackageDir>
       <SpecFlowToolsPath>$(SpecFlowPackageDir)tools\</SpecFlowToolsPath>
-      <SpecFlowToolExe>specflow.exe</SpecFlowToolExe>
-      <GenerateCodeBehindCommand>$(SpecFlowToolsPath)$(SpecFlowToolExe) generateall "$(SpecFlowShadowProject)"</GenerateCodeBehindCommand>
+      <SpecFlowToolExe>$(SpecFlowToolsPath)specflow.exe</SpecFlowToolExe>
+      <GenerateCodeBehindCommand>"$(SpecFlowToolExe)" generateall "$(SpecFlowShadowProject)"</GenerateCodeBehindCommand>
     </PropertyGroup>
     
     <Exec Command="$(GenerateCodeBehindCommand)" WorkingDirectory="$(MSBuildProjectDirectory)" StandardOutputImportance="Low" />

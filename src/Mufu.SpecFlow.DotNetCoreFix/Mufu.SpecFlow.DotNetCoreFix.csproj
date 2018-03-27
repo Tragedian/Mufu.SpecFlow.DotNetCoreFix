@@ -4,15 +4,15 @@
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <BuildOutputTargetFolder>build\</BuildOutputTargetFolder>
-    <Version>1.0.2</Version>
+    <Version>1.0.3-alpha</Version>
     <Description>Lets you run SpecFlow tests on .NET Core 2.0</Description>
     <PackageLicenseUrl>https://github.com/Tragedian/Mufu.SpecFlow.DotNetCoreFix/tree/master/LICENSE.txt</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/Tragedian/Mufu.SpecFlow.DotNetCoreFix</RepositoryUrl>
     <Company />
     <Authors>Paul Turner</Authors>
-    <PackageReleaseNotes>Fix major bug in task-loading</PackageReleaseNotes>
+    <PackageReleaseNotes>Fix a bug where SpecFlow tooling was not located when NuGet package directory doesn't have a trailing slash.</PackageReleaseNotes>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <FileVersion>1.0.3.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
