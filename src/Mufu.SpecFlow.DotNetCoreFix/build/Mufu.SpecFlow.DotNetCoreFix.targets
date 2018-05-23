@@ -95,7 +95,9 @@
     
     <Exec Command="$(GenerateCodeBehindCommand)" WorkingDirectory="$(MSBuildProjectDirectory)" StandardOutputImportance="Low" />
 
-    <Error Condition="!Exists(@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity).cs'))" Text="Failed to generate feature file code behind for @(SpecFlowFeature->'%(Identity)')" />
+    <Error
+      Condition="!Exists(@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity).cs')) OR $([System.DateTime]::Parse('%(ModifiedTime)').Ticks) &gt; $([System.IO.File]::GetLastWriteTime('$(SpecFlowShadowProjectPath)%(Identity).cs').Ticks)"
+      Text="Failed to generate feature file code behind for @(SpecFlowFeature->'%(Identity)')" />
 
     <ItemGroup>
       <Compile Include="@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity).cs')" />

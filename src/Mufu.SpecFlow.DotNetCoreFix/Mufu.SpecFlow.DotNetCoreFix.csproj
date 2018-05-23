@@ -38,15 +38,4 @@
     <Content Include="build\Mufu.SpecFlow.DotNetCoreFix.tasks" PackagePath="build\" />
   </ItemGroup>
 
-  <!--<ItemGroup>
-    <_PackageFiles Include="$(OutputPath)net461\Mufu.SpecFlow.DotNetCoreFix.SpecFlowPlugin.dll">
-      <BuildAction>None</BuildAction>
-      <PackagePath>$(BuildOutputTargetFolder)net461\</PackagePath>
-    </_PackageFiles>
-    <_PackageFiles Include="$(OutputPath)netstandard2.0\Mufu.SpecFlow.DotNetCoreFix.SpecFlowPlugin.dll">
-      <BuildAction>None</BuildAction>
-      <PackagePath>$(BuildOutputTargetFolder)netstandard2.0\</PackagePath>
-    </_PackageFiles>
-  </ItemGroup>-->
-
 </Project>
