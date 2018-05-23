@@ -38,7 +38,11 @@
   <!--
   Creates the SpecFlow shadow project structure needed for the SpecFlow command-line tool.
   -->
-  <Target Name="CreateSpecFlowShadowProject" DependsOnTargets="GetSpecFlowFeatureFiles;SetSpecFlowShadowProjectLocations" Inputs="@(SpecFlowFeature)" Outputs="@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity)');$(SpecFlowAppConfig);$(SpecFlowShadowProject)">
+  <Target 
+    Name="CreateSpecFlowShadowProject"
+    DependsOnTargets="GetSpecFlowFeatureFiles;SetSpecFlowShadowProjectLocations"
+    Inputs="@(SpecFlowFeature)"
+    Outputs="@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity)');$(SpecFlowAppConfig);$(SpecFlowShadowProject)">
     
     <PropertyGroup>
       <SpecFlowUnitTestProvider Condition="'%(PackageReference.Identity)' == 'NUnit'">nunit</SpecFlowUnitTestProvider>
@@ -69,7 +73,12 @@
   <!--
   Generates the SpecFlow code-behind files.
   -->
-  <Target Name="GenerateSpecFlowCodeBehindCsFiles" BeforeTargets="BeforeBuild" DependsOnTargets="CreateSpecFlowShadowProject" Inputs="@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity)')" Outputs="@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity).cs')">
+  <Target
+    Name="GenerateSpecFlowCodeBehindCsFiles"
+    BeforeTargets="BeforeBuild"
+    DependsOnTargets="CreateSpecFlowShadowProject"
+    Inputs="@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity)');$(SpecFlowAppConfig);$(SpecFlowShadowProject)"
+    Outputs="@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity).cs')">
 
     <ItemGroup>
       <SpecFlowPackageReference Include="@(PackageReference)" Condition="'%(Identity)' == 'SpecFlow'" />

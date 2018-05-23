@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    
+    <MufuSpecFlowTaskAssembly>$(MSBuildThisFileDirectory)..\..\src\Mufu.SpecFlow.DotNetCoreFix\bin\Debug\net461\Mufu.SpecFlow.DotNetCoreFix.dll</MufuSpecFlowTaskAssembly>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <None Update="specflow.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
