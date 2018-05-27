@@ -16,15 +16,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Build.Framework" Version="15.3.409">
-      <PrivateAssets>All</PrivateAssets>
-    </PackageReference>
-
-    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.3.409">
-      <PrivateAssets>All</PrivateAssets>
-    </PackageReference>
-
-    <PackageReference Update="@(PackageReference)" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Build.Framework" Version="[14.3.0,]" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Build.Tasks.Core" Version="[14.3.0,]" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="[14.3.0,]" PrivateAssets="All" />
 
     <PackageReference Include="SpecFlow" Version="[2.2.0,]">
       <NoWarn>NU1701</NoWarn>
@@ -34,8 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="build\Mufu.SpecFlow.DotNetCoreFix.targets" PackagePath="build\" />
-    <Content Include="build\Mufu.SpecFlow.DotNetCoreFix.tasks" PackagePath="build\" />
+    <Content Include="build\Mufu.SpecFlow.NetCore.targets" PackagePath="build\" />
+    <Content Include="build\Mufu.SpecFlow.NetCore.tasks" PackagePath="build\" />
   </ItemGroup>
 
 </Project>

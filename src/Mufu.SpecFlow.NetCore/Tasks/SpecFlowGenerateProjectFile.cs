@@ -1,10 +1,10 @@
-﻿using Microsoft.Build.Framework;
+﻿using System.Xml;
+using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
-using System.Xml;
-
-namespace Mufu.SpecFlow.DotNetCoreFix.Tasks
+ 
+namespace Mufu.SpecFlow.NetCore.Tasks
 {
-    public class CreateSpecFlowProjectFile : Task
+    public class SpecFlowGenerateProjectFile : Task
     {
         [Required]
         public ITaskItem OutputProjectFile { get; set; }
@@ -12,7 +12,7 @@ namespace Mufu.SpecFlow.DotNetCoreFix.Tasks
         [Required]
         public ITaskItem[] FeatureFiles { get; set; }
 
-        public CreateSpecFlowProjectFile()
+        public SpecFlowGenerateProjectFile()
             : base(AssemblyResources.PrimaryResources)
         {
 
@@ -22,7 +22,7 @@ namespace Mufu.SpecFlow.DotNetCoreFix.Tasks
         {
             if (OutputProjectFile == null)
             {
-                Log.LogErrorWithCodeFromResources("CreateSpecFlowProjectFile.NeedsOutputProjectFile", nameof(OutputProjectFile));
+                Log.LogErrorWithCodeFromResources(nameof(SpecFlowGenerateProjectFile) + ".NeedsOutputProjectFile", nameof(OutputProjectFile));
                 return false;
             }
 

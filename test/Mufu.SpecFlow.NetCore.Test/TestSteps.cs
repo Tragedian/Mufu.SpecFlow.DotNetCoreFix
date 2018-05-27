@@ -1,6 +1,6 @@
 ﻿using TechTalk.SpecFlow;
 
-namespace Mufu.SpecFlow.DotNetCoreFix.Test
+namespace Mufu.SpecFlow.NetCore.Test
 {
     [Binding]
     public class TestSteps

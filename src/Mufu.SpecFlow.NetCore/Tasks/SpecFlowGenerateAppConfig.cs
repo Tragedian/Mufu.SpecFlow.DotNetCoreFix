@@ -1,10 +1,10 @@
-﻿using Microsoft.Build.Framework;
+﻿using System.Xml;
+using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
-using System.Xml;
 
-namespace Mufu.SpecFlow.DotNetCoreFix.Tasks
+namespace Mufu.SpecFlow.NetCore.Tasks
 {
-    public class CreateSpecFlowAppConfig : Task
+    public class SpecFlowGenerateAppConfig : Task
     {
         [Required]
         public ITaskItem OutputAppConfigFile { get; set; }
@@ -12,7 +12,7 @@ namespace Mufu.SpecFlow.DotNetCoreFix.Tasks
         [Required]
         public string UnitTestProvider { get; set; }
 
-        public CreateSpecFlowAppConfig()
+        public SpecFlowGenerateAppConfig()
             : base(AssemblyResources.PrimaryResources)
         {
 
@@ -22,7 +22,7 @@ namespace Mufu.SpecFlow.DotNetCoreFix.Tasks
         {
             if (OutputAppConfigFile == null)
             {
-                Log.LogErrorWithCodeFromResources("CreateSpecFlowAppConfig.NeedsOutputAppConfigFile", nameof(OutputAppConfigFile));
+                Log.LogErrorWithCodeFromResources(nameof(SpecFlowGenerateAppConfig) + ".NeedsOutputAppConfigFile", nameof(OutputAppConfigFile));
                 return false;
             }
 

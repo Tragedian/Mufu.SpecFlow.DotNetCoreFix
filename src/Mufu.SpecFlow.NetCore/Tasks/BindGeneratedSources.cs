@@ -1,13 +1,13 @@
-﻿using Microsoft.Build.Framework;
-using Microsoft.Build.Utilities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security;
 using System.Text.RegularExpressions;
 using System.Threading;
+using Microsoft.Build.Framework;
+using Microsoft.Build.Utilities;
 
-namespace Mufu.SpecFlow.DotNetCoreFix.Tasks
+namespace Mufu.SpecFlow.NetCore.Tasks
 {
     public class BindGeneratedSources : Task
     {

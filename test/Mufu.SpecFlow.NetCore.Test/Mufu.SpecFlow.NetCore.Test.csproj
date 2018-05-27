@@ -2,14 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <MufuSpecFlowTaskAssembly>$(MSBuildThisFileDirectory)..\..\src\Mufu.SpecFlow.DotNetCoreFix\bin\Debug\net461\Mufu.SpecFlow.DotNetCoreFix.dll</MufuSpecFlowTaskAssembly>
+    <MufuSpecFlowTaskAssembly>$(MSBuildThisFileDirectory)..\..\src\Mufu.SpecFlow.NetCore\bin\Debug\net461\Mufu.SpecFlow.NetCore.dll</MufuSpecFlowTaskAssembly>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
-  <Import Project="..\..\src\Mufu.SpecFlow.DotNetCoreFix\build\Mufu.SpecFlow.DotNetCoreFix.targets" />
+  <Import Project="..\..\src\Mufu.SpecFlow.NetCore\build\Mufu.SpecFlow.NetCore.targets" />
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Mufu.SpecFlow.DotNetCoreFix\Mufu.SpecFlow.DotNetCoreFix.csproj" />
     
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
     <PackageReference Include="SpecFlow" Version="2.2.1">
