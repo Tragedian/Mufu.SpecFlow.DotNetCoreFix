@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{91C57736-F958-4F6E-8C98-70EFDB9D0D0A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{086623A2-865B-4991-8CAD-1473C8920625}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rhubarb.SpecFlow.NetCore", "src\Rhubarb.SpecFlow.NetCore\Rhubarb.SpecFlow.NetCore.csproj", "{E21E3DA6-6335-4902-882B-981967227B9B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rhubarb.SpecFlow.NetCore.Test", "test\Rhubarb.SpecFlow.NetCore.Test\Rhubarb.SpecFlow.NetCore.Test.csproj", "{5C5B1556-6BAC-4AE3-8B49-0FB68D988886}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E21E3DA6-6335-4902-882B-981967227B9B} = {E21E3DA6-6335-4902-882B-981967227B9B}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E21E3DA6-6335-4902-882B-981967227B9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E21E3DA6-6335-4902-882B-981967227B9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E21E3DA6-6335-4902-882B-981967227B9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E21E3DA6-6335-4902-882B-981967227B9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C5B1556-6BAC-4AE3-8B49-0FB68D988886}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C5B1556-6BAC-4AE3-8B49-0FB68D988886}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C5B1556-6BAC-4AE3-8B49-0FB68D988886}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C5B1556-6BAC-4AE3-8B49-0FB68D988886}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E21E3DA6-6335-4902-882B-981967227B9B} = {91C57736-F958-4F6E-8C98-70EFDB9D0D0A}
+		{5C5B1556-6BAC-4AE3-8B49-0FB68D988886} = {086623A2-865B-4991-8CAD-1473C8920625}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4BA70536-6BEF-46BF-B6A1-080274A59565}
+	EndGlobalSection
+EndGlobal

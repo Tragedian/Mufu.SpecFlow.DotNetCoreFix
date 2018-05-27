@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.Build.Framework;
 
-namespace Mufu.SpecFlow.NetCore.Tasks
-{
+namespace Rhubarb.SpecFlow.NetCore.Tasks
+{ 
     public static class TaskItemExtensions
     {
         public static string GetFullPath(this ITaskItem item)

@@ -4,15 +4,15 @@
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <BuildOutputTargetFolder>build\</BuildOutputTargetFolder>
-    <Version>1.0.3</Version>
-    <Description>Lets you run SpecFlow tests on .NET Core 2.0</Description>
-    <PackageLicenseUrl>https://github.com/Tragedian/Mufu.SpecFlow.DotNetCoreFix/tree/master/LICENSE.txt</PackageLicenseUrl>
-    <RepositoryUrl>https://github.com/Tragedian/Mufu.SpecFlow.DotNetCoreFix</RepositoryUrl>
+    <Version>1.0</Version>
+    <Description>Support for SpecFlow running on .NET Core 2.0</Description>
+    <PackageLicenseUrl>https://github.com/Tragedian/Mufu.SpecFlow.NetCore/tree/master/LICENSE.txt</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/Tragedian/Mufu.SpecFlow.NetCore</RepositoryUrl>
     <Company />
     <Authors>Paul Turner</Authors>
-    <PackageReleaseNotes>Fix a bug where SpecFlow tooling was not located when NuGet package directory doesn't have a trailing slash.</PackageReleaseNotes>
+    <PackageReleaseNotes></PackageReleaseNotes>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.3.0</FileVersion>
+    <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,8 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="build\Mufu.SpecFlow.NetCore.targets" PackagePath="build\" />
-    <Content Include="build\Mufu.SpecFlow.NetCore.tasks" PackagePath="build\" />
+    <Content Include="build\Rhubarb.SpecFlow.NetCore.targets" PackagePath="build\" />
+    <Content Include="build\Rhubarb.SpecFlow.NetCore.tasks" PackagePath="build\" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Mufu.SpecFlow.DotNetCoreFix</id>
+    <version>1.1.0</version>
+    <authors>Paul Turner</authors>
+    <owners>Paul Turner</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/Tragedian/Mufu.SpecFlow.NetCore/tree/master/LICENSE.txt</licenseUrl>
+    <description>Lets you run SpecFlow tests on .NET Core 2.0</description>
+    <releaseNotes>This package has been superceded by Mufu.SpecFlow.NetCore.
+      This package is maintained for backwards compatibility.</releaseNotes>
+    <repository url="https://github.com/Tragedian/Mufu.SpecFlow.NetCore" />
+    <tags>SpecFlow</tags>
+    <dependencies>
+      <dependency id="Rhubarb.SpecFlow.NetCore" version="1.0.0" />
+    </dependencies>
+  </metadata>
+</package>

@@ -3,8 +3,8 @@ using System.Text.RegularExpressions;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 
-namespace Mufu.SpecFlow.NetCore.Tasks
-{
+namespace Rhubarb.SpecFlow.NetCore.Tasks
+{ 
     public class SpecFlowGenerateSources : ToolTask
     {
         private static readonly Regex ExceptionRegex = new Regex(".*\\..*Exception: (?<message>.*)( -->)?");

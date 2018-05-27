@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <MufuSpecFlowTaskAssembly>$(MSBuildThisFileDirectory)..\..\src\Mufu.SpecFlow.NetCore\bin\Debug\net461\Mufu.SpecFlow.NetCore.dll</MufuSpecFlowTaskAssembly>
+    <RhubarbSpecFlowTaskAssembly>$(MSBuildThisFileDirectory)..\..\src\Rhubarb.SpecFlow.NetCore\bin\$(Configuration)\net461\Rhubarb.SpecFlow.NetCore.dll</RhubarbSpecFlowTaskAssembly>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
-  <Import Project="..\..\src\Mufu.SpecFlow.NetCore\build\Mufu.SpecFlow.NetCore.targets" />
+  <Import Project="..\..\src\Rhubarb.SpecFlow.NetCore\build\Rhubarb.SpecFlow.NetCore.targets" />
 
   <ItemGroup>
     

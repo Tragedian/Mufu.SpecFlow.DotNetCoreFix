@@ -1,6 +1,6 @@
 ﻿using System.Resources;
 
-namespace Mufu.SpecFlow.NetCore
+namespace Rhubarb.SpecFlow.NetCore
 {
     internal static class AssemblyResources
     {
