@@ -28,7 +28,7 @@ You should then remove any `*.feature.cs` files left in your project.
 
 ### Install and configure the package:
 
-    Install-Package Mufu.SpecFlow.NetCore
+    Install-Package Rhubarb.SpecFlow.NetCore
 
 If you're running SpecFlow on anything other than NUnit, you need to have a `specflow.json` file in your test project. This file must be set to be copied to your output folder on every build and is used to configure your test runner (e.g. xunit):
 
