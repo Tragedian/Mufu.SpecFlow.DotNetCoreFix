@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <RuntimeTarget>netstandard2.0</RuntimeTarget>
+    <RuntimeTarget Condition="'$(MSBuildRuntimeType)' != 'Core'">net461</RuntimeTarget>
+    <RhubarbSpecFlowTaskAssembly Condition="'$(RhubarbSpecFlowTaskAssembly)' == ''">$(MSBuildThisFileDirectory)$(RuntimeTarget)\Rhubarb.SpecFlow.NetCore.dll</RhubarbSpecFlowTaskAssembly>
+  </PropertyGroup>
+
+  <UsingTask TaskName="Rhubarb.SpecFlow.NetCore.Tasks.BindGeneratedSources" AssemblyFile="$(RhubarbSpecFlowTaskAssembly)"/>
+  <UsingTask TaskName="Rhubarb.SpecFlow.NetCore.Tasks.SpecFlowGenerateAppConfig" AssemblyFile="$(RhubarbSpecFlowTaskAssembly)"/>
+  <UsingTask TaskName="Rhubarb.SpecFlow.NetCore.Tasks.SpecFlowGenerateProjectFile" AssemblyFile="$(RhubarbSpecFlowTaskAssembly)"/>
+  <UsingTask TaskName="Rhubarb.SpecFlow.NetCore.Tasks.SpecFlowGenerateSources" AssemblyFile="$(RhubarbSpecFlowTaskAssembly)"/>
+
+</Project>

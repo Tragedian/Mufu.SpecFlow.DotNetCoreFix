@@ -4,16 +4,17 @@
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <BuildOutputTargetFolder>build\</BuildOutputTargetFolder>
-    <Version>1.0</Version>
+    <Version>1.0.1</Version>
     <Description>Support for SpecFlow running on .NET Core 2.0</Description>
     <PackageLicenseUrl>https://github.com/Tragedian/Rhubarb.SpecFlow.NetCore/tree/master/LICENSE.txt</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/Tragedian/Rhubarb.SpecFlow.NetCore</RepositoryUrl>
-    <Company />
+    <Company>Rhubarb Tech</Company>
     <Authors>Paul Turner</Authors>
     <PackageReleaseNotes></PackageReleaseNotes>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
     <PackageTags>SpecFlow</PackageTags>
+    <PackageProjectUrl>https://github.com/Tragedian/Rhubarb.SpecFlow.NetCore</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
