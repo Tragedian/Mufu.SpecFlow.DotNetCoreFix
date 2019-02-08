@@ -4,13 +4,13 @@
     <TargetFrameworks>netstandard2.0;net462</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <BuildOutputTargetFolder>build\</BuildOutputTargetFolder>
-    <Version>1.1.0-alpha5</Version>
+    <Version>1.1.1</Version>
     <Description>Support for SpecFlow running on .NET Core 2.0</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/Tragedian/Rhubarb.SpecFlow.NetCore</RepositoryUrl>
     <Company>Rhubarb Tech</Company>
     <Authors>Paul Turner</Authors>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageReleaseNotes>Upgrade to SpecFlow 2.4.1.</PackageReleaseNotes>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
     <PackageTags>SpecFlow</PackageTags>
@@ -22,10 +22,7 @@
     <PackageReference Include="Microsoft.Build.Framework" Version="14.3.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.Build.Tasks.Core" Version="14.3.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.Build.Utilities.Core" Version="14.3.0" PrivateAssets="All" />
-    <PackageReference Include="Semver" Version="2.0.4" />
     <PackageReference Include="SpecFlow" Version="[2.4.1]" />
-
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.4.0" />
   </ItemGroup>
 
   <ItemGroup>

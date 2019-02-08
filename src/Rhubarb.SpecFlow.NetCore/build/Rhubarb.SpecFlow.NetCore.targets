@@ -85,7 +85,7 @@
       <SpecFlowToolsPath>$(SpecFlowPackageDir)tools\</SpecFlowToolsPath>
     </PropertyGroup>
     
-    <SpecFlowGenerateSources ToolPath="$(SpecFlowToolsPath)" ProjectFile="$(SpecFlowShadowProject)" ToolVersion="$(SpecFlowVersion)" />
+    <SpecFlowGenerateSources ToolPath="$(SpecFlowToolsPath)" ProjectFile="$(SpecFlowShadowProject)" />
 
     <ItemGroup>
       <Compile Include="@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity).cs')" />

@@ -3,7 +3,6 @@ using System.IO;
 using System.Text.RegularExpressions;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
-using Semver;
 
 namespace Rhubarb.SpecFlow.NetCore.Tasks
 { 
@@ -29,8 +28,6 @@ namespace Rhubarb.SpecFlow.NetCore.Tasks
         public bool VerboseOutput { get; set; }
 
         public ITaskItem ProjectFile { get; set; }
-
-        public string ToolVersion { get; set; }
 
         protected override string ToolName { get; } = "SpecFlow.exe";
 
@@ -80,21 +77,6 @@ namespace Rhubarb.SpecFlow.NetCore.Tasks
 
         protected override string GenerateCommandLineCommands()
         {
-            if (ToolVersion != null && SemVersion.TryParse(ToolVersion, out var version))
-            {
-                return GenerateCommandLineCommands(version);
-            }
-
-            return GenerateLegacyCommandLineVersion();
-        }
-
-        private string GenerateCommandLineCommands(SemVersion specFlowVersion)
-        {
-            if (specFlowVersion < SemVersion.Parse("2.3.0"))
-            {
-                return GenerateLegacyCommandLineVersion();
-            }
-
             var builder = new CommandLineBuilder();
 
             builder.AppendTextUnquoted(base.GenerateCommandLineCommands());
@@ -112,28 +94,6 @@ namespace Rhubarb.SpecFlow.NetCore.Tasks
             if (VerboseOutput)
             {
                 builder.AppendSwitch("-v");
-            }
-
-            return builder.ToString();
-        }
-
-        private string GenerateLegacyCommandLineVersion()
-        {
-            var builder = new CommandLineBuilder();
-
-            builder.AppendTextUnquoted(base.GenerateCommandLineCommands());
-
-            builder.AppendSwitch("generateall");
-            builder.AppendSwitch(ProjectFile.GetFullPath());
-
-            if (RegenerateAll)
-            {
-                builder.AppendSwitch("/force");
-            }
-
-            if (VerboseOutput)
-            {
-                builder.AppendSwitch("/verbose");
             }
 
             return builder.ToString();
