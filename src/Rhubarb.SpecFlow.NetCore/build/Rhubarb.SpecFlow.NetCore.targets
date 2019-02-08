@@ -6,16 +6,7 @@
   <!--
   Removes the SpecFlow shadow project as part of the clean process.
   -->
-  <Target Name="CleanSpecFlowShadowProject" BeforeTargets="BeforeClean">
-
-    <PropertyGroup>
-      <SpecFlowShadowProjectPath Condition="'$(SpecFlowShadowProjectPath)' == ''">$(IntermediateOutputPath)SpecFlowShadowProject\</SpecFlowShadowProjectPath>
-    </PropertyGroup>
-
-    <ItemGroup>
-      <OldSpecFlowShadowProject Include="$(SpecFlowShadowProjectPath)**.*" />
-    </ItemGroup>
-
+  <Target Name="CleanSpecFlowShadowProject" DependsOnTargets="SetSpecFlowShadowProjectLocations" BeforeTargets="BeforeClean">
     <RemoveDir Directories="$(SpecFlowShadowProjectPath)" />
   </Target>
 

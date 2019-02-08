@@ -4,7 +4,7 @@
     <TargetFrameworks>netstandard2.0;net462</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <BuildOutputTargetFolder>build\</BuildOutputTargetFolder>
-    <Version>1.1.0</Version>
+    <Version>1.1.0-alpha5</Version>
     <Description>Support for SpecFlow running on .NET Core 2.0</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/Tragedian/Rhubarb.SpecFlow.NetCore</RepositoryUrl>

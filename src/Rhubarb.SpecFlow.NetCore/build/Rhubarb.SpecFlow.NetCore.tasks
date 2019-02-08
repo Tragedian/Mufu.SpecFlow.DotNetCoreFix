@@ -3,7 +3,7 @@
 
   <PropertyGroup>
     <RuntimeTarget>netstandard2.0</RuntimeTarget>
-    <RuntimeTarget Condition="'$(MSBuildRuntimeType)' != 'Core'">net461</RuntimeTarget>
+    <RuntimeTarget Condition="'$(MSBuildRuntimeType)' != 'Core'">net462</RuntimeTarget>
     <RhubarbSpecFlowTaskAssembly Condition="'$(RhubarbSpecFlowTaskAssembly)' == ''">$(MSBuildThisFileDirectory)$(RuntimeTarget)\Rhubarb.SpecFlow.NetCore.dll</RhubarbSpecFlowTaskAssembly>
   </PropertyGroup>
 
