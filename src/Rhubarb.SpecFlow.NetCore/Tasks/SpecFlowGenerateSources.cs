@@ -90,31 +90,31 @@ namespace Rhubarb.SpecFlow.NetCore.Tasks
 
         private string GenerateCommandLineCommands(SemVersion specFlowVersion)
         {
-            if (specFlowVersion >= SemVersion.Parse("2.3.0"))
+            if (specFlowVersion < SemVersion.Parse("2.3.0"))
             {
-                var builder = new CommandLineBuilder();
-
-                builder.AppendTextUnquoted(base.GenerateCommandLineCommands());
-
-                builder.AppendSwitch("GenerateAll");
-
-                builder.AppendSwitch("-p");
-                builder.AppendSwitch(ProjectFile.GetFullPath());
-
-                if (RegenerateAll)
-                {
-                    builder.AppendSwitch("-f");
-                }
-
-                if (VerboseOutput)
-                {
-                    builder.AppendSwitch("-v");
-                }
-
-                return builder.ToString();
+                return GenerateLegacyCommandLineVersion();
             }
-            
-            return GenerateLegacyCommandLineVersion();
+
+            var builder = new CommandLineBuilder();
+
+            builder.AppendTextUnquoted(base.GenerateCommandLineCommands());
+
+            builder.AppendSwitch("GenerateAll");
+
+            builder.AppendSwitch("-p");
+            builder.AppendSwitch(ProjectFile.GetFullPath());
+
+            if (RegenerateAll)
+            {
+                builder.AppendSwitch("-f");
+            }
+
+            if (VerboseOutput)
+            {
+                builder.AppendSwitch("-v");
+            }
+
+            return builder.ToString();
         }
 
         private string GenerateLegacyCommandLineVersion()

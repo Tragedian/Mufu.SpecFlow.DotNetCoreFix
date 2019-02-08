@@ -90,7 +90,7 @@
     <PropertyGroup>
       <NuGetPackagesDir>$(NuGetPackageRoot)</NuGetPackagesDir>
       <NuGetPackagesDir Condition="!HasTrailingSlash('$(NuGetPackagesDir)')">$(NuGetPackagesDir)\</NuGetPackagesDir>
-      <SpecFlowPackageDir>$(NuGetPackagesDir)\SpecFlow\$(SpecFlowVersion)')\</SpecFlowPackageDir>
+      <SpecFlowPackageDir>$(NuGetPackagesDir)\SpecFlow\$(SpecFlowVersion)\</SpecFlowPackageDir>
       <SpecFlowToolsPath>$(SpecFlowPackageDir)tools\</SpecFlowToolsPath>
     </PropertyGroup>
     

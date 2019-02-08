@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <RhubarbSpecFlowTaskAssembly>$(MSBuildThisFileDirectory)..\..\src\Rhubarb.SpecFlow.NetCore\bin\$(Configuration)\net461\Rhubarb.SpecFlow.NetCore.dll</RhubarbSpecFlowTaskAssembly>
+    <RhubarbSpecFlowTaskAssembly>$(MSBuildThisFileDirectory)..\..\src\Rhubarb.SpecFlow.NetCore\bin\$(Configuration)\netstandard2.0\Rhubarb.SpecFlow.NetCore.dll</RhubarbSpecFlowTaskAssembly>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
