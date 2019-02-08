@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
@@ -11,13 +11,18 @@
   <ItemGroup>
     
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
-    <PackageReference Include="SpecFlow" Version="2.2.1">
-      <NoWarn>NU1701</NoWarn>
-    </PackageReference>
+    
+    <PackageReference Include="SpecFlow" Version="2.4.1" />
     <PackageReference Include="xunit" Version="2.3.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1">
       
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="TechTalk.SpecFlow">
+      <HintPath>..\..\lib\SpecFlow\net45\TechTalk.SpecFlow.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

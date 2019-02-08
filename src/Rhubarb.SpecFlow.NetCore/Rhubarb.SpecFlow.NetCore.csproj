@@ -1,12 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net462</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <BuildOutputTargetFolder>build\</BuildOutputTargetFolder>
-    <Version>1.0.1</Version>
+    <Version>1.1.0-alpha.2</Version>
     <Description>Support for SpecFlow running on .NET Core 2.0</Description>
-    <PackageLicenseUrl>https://github.com/Tragedian/Rhubarb.SpecFlow.NetCore/tree/master/LICENSE.txt</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/Tragedian/Rhubarb.SpecFlow.NetCore</RepositoryUrl>
     <Company>Rhubarb Tech</Company>
     <Authors>Paul Turner</Authors>
@@ -15,23 +15,34 @@
     <FileVersion>1.0.0.0</FileVersion>
     <PackageTags>SpecFlow</PackageTags>
     <PackageProjectUrl>https://github.com/Tragedian/Rhubarb.SpecFlow.NetCore</PackageProjectUrl>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Build.Framework" Version="[14.3.0,]" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.Build.Tasks.Core" Version="[14.3.0,]" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="[14.3.0,]" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Build.Framework" Version="14.3.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Build.Tasks.Core" Version="14.3.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="14.3.0" PrivateAssets="All" />
+    <PackageReference Include="Semver" Version="2.0.4" />
 
-    <PackageReference Include="SpecFlow" Version="[2.2.0,]">
-      <NoWarn>NU1701</NoWarn>
-    </PackageReference>
-
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="[4.4.0,]" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="build\Rhubarb.SpecFlow.NetCore.targets" PackagePath="build\" />
     <Content Include="build\Rhubarb.SpecFlow.NetCore.tasks" PackagePath="build\" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <Reference Include="TechTalk.SpecFlow">
+      <HintPath>..\..\lib\SpecFlow\net45\TechTalk.SpecFlow.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\lib\SpecFlow\net45\TechTalk.SpecFlow.dll">
+      <Pack>true</Pack>
+      <PackagePath>lib\netstandard2.0\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

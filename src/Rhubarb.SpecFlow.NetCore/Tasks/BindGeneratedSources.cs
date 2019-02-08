@@ -74,14 +74,14 @@ namespace Rhubarb.SpecFlow.NetCore.Tasks
                 return true;
             }
 
-            bool success = true;
+            var success = true;
 
-            for (int i = 0; i < GeneratedSources.Length; i++)
+            for (var i = 0; i < GeneratedSources.Length; i++)
             {
                 // In the generate file, replace the #line 1 "<filename>" reference with a link to this source file.
                 try
                 {
-                    success = BindGeneratedFileWithRetries(GeneratedSources[i], FeatureFiles[i]);
+                    BindGeneratedFileWithRetries(GeneratedSources[i], FeatureFiles[i]);
                 }
                 catch (Exception ex) when (IsIoRelatedException(ex))
                 {
@@ -89,7 +89,7 @@ namespace Rhubarb.SpecFlow.NetCore.Tasks
                 }
             }
 
-            return true;
+            return success;
         }
 
         private bool BindGeneratedFileWithRetries(ITaskItem generatedFile, ITaskItem sourceFile)

@@ -1,7 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text.RegularExpressions;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
+using Semver;
 
 namespace Rhubarb.SpecFlow.NetCore.Tasks
 { 
@@ -13,7 +15,7 @@ namespace Rhubarb.SpecFlow.NetCore.Tasks
 
         private static readonly Regex ErrorLineRegex = new Regex(@"Line \d+:\d+ - \((?<line>\d+):(?<column>\d+)\): (?<message>.*)");
 
-        private bool _exceptionHasBeenThrown = false;
+        private bool _exceptionHasBeenThrown;
 
         private string _errorFile;
 
@@ -27,6 +29,8 @@ namespace Rhubarb.SpecFlow.NetCore.Tasks
         public bool VerboseOutput { get; set; }
 
         public ITaskItem ProjectFile { get; set; }
+
+        public string ToolVersion { get; set; }
 
         protected override string ToolName { get; } = "SpecFlow.exe";
 
@@ -75,6 +79,45 @@ namespace Rhubarb.SpecFlow.NetCore.Tasks
         }
 
         protected override string GenerateCommandLineCommands()
+        {
+            if (ToolVersion != null && SemVersion.TryParse(ToolVersion, out var version))
+            {
+                return GenerateCommandLineCommands(version);
+            }
+
+            return GenerateLegacyCommandLineVersion();
+        }
+
+        private string GenerateCommandLineCommands(SemVersion specFlowVersion)
+        {
+            if (specFlowVersion >= SemVersion.Parse("2.3.0"))
+            {
+                var builder = new CommandLineBuilder();
+
+                builder.AppendTextUnquoted(base.GenerateCommandLineCommands());
+
+                builder.AppendSwitch("GenerateAll");
+
+                builder.AppendSwitch("-p");
+                builder.AppendSwitch(ProjectFile.GetFullPath());
+
+                if (RegenerateAll)
+                {
+                    builder.AppendSwitch("-f");
+                }
+
+                if (VerboseOutput)
+                {
+                    builder.AppendSwitch("-v");
+                }
+
+                return builder.ToString();
+            }
+            
+            return GenerateLegacyCommandLineVersion();
+        }
+
+        private string GenerateLegacyCommandLineVersion()
         {
             var builder = new CommandLineBuilder();
 
@@ -129,6 +172,9 @@ namespace Rhubarb.SpecFlow.NetCore.Tasks
                     var message = errorMatch.Groups["message"].Value;
 
                     Log.LogError("SpecFlow", null, null, _errorFile, line, column, 0, 0, message);
+
+                    _errorFile = null;
+
                     return;
                 }
             }

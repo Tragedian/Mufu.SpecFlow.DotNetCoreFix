@@ -84,10 +84,11 @@
       <NuGetPackagesDir>$(NuGetPackageRoot)</NuGetPackagesDir>
       <NuGetPackagesDir Condition="!HasTrailingSlash('$(NuGetPackagesDir)')">$(NuGetPackagesDir)\</NuGetPackagesDir>
       <SpecFlowPackageDir>$(NuGetPackagesDir)@(SpecFlowPackageReference->'%(Identity)\%(Version)')\</SpecFlowPackageDir>
+      <SpecFlowVersion>@(SpecFlowPackageReference->'%(Version)')</SpecFlowVersion>
       <SpecFlowToolsPath>$(SpecFlowPackageDir)tools\</SpecFlowToolsPath>
     </PropertyGroup>
     
-    <SpecFlowGenerateSources ToolPath="$(SpecFlowToolsPath)" ProjectFile="$(SpecFlowShadowProject)"/>
+    <SpecFlowGenerateSources ToolPath="$(SpecFlowToolsPath)" ProjectFile="$(SpecFlowShadowProject)" ToolVersion="$(SpecFlowVersion)" />
 
     <ItemGroup>
       <Compile Include="@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity).cs')" />

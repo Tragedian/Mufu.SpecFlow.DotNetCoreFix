@@ -1,10 +1,10 @@
 {
   "profiles": {
-    "Mufu.SpecFlow.DotNetCoreFix": {
+    "Rhubarb.SpecFlow.NetCore": {
       "commandName": "Executable",
       "executablePath": "C:\\Program Files\\dotnet\\dotnet.exe",
-      "commandLineArgs": "build --no-restore --no-dependencies --no-incremental -p:MufuSpecFlowTaskAssembly=..\\bin\\Debug\\netstandard2.0\\Mufu.SpecFlow.DotNetCoreFix.dll",
-      "workingDirectory": "..\\..\\test\\Mufu.SpecFlow.DotNetCoreFix.Test",
+      "commandLineArgs": "build --no-restore --no-dependencies --no-incremental -p:RhubarbSpecFlowTaskAssembly=..\\bin\\Debug\\netstandard2.0\\Rhubarb.SpecFlow.NetCore.dll",
+      "workingDirectory": "..\\..\\test\\Rhubarb.SpecFlow.NetCore.Test",
       "environmentVariables": {
         "MSBUILDDEBUGONSTART": "2"
       }
