@@ -40,7 +40,7 @@
   -->
   <Target 
     Name="CreateSpecFlowShadowProject"
-    DependsOnTargets="GetSpecFlowFeatureFiles;SetSpecFlowShadowProjectLocations"
+    DependsOnTargets="CheckCodeBehindGenerationIsDisabled;GetSpecFlowFeatureFiles;SetSpecFlowShadowProjectLocations"
     Inputs="@(SpecFlowFeature)"
     Outputs="@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity)');$(SpecFlowAppConfig);$(SpecFlowShadowProject)">
     
@@ -64,6 +64,13 @@
 
     <Copy SourceFiles="@(SpecFlowFeature)" DestinationFiles="@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity)')" />
     
+  </Target>
+
+  <Target Name="CheckCodeBehindGenerationIsDisabled">
+    <Error
+      Text="SpecFlow designer codebehind generation is not compatible with MSBuild codebehind generation. The custom tool must be removed from the file."
+      File="@(None)"
+      Condition="%(None.Extension) == '.feature' AND %(None.Generator) == 'SpecFlowSingleFileGenerator'"/>
   </Target>
   
   <!--
