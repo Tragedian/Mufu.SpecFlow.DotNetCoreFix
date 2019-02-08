@@ -76,15 +76,14 @@
     Inputs="@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity)');$(SpecFlowAppConfig);$(SpecFlowShadowProject)"
     Outputs="@(SpecFlowFeature->'$(SpecFlowShadowProjectPath)%(Identity).cs')">
 
-    <ItemGroup>
-      <SpecFlowPackageReference Include="@(PackageReference)" Condition="'%(Identity)' == 'SpecFlow'" />
-    </ItemGroup>
+    <PropertyGroup>
+      <SpecFlowVersion>2.4.1</SpecFlowVersion>
+    </PropertyGroup>
 
     <PropertyGroup>
       <NuGetPackagesDir>$(NuGetPackageRoot)</NuGetPackagesDir>
       <NuGetPackagesDir Condition="!HasTrailingSlash('$(NuGetPackagesDir)')">$(NuGetPackagesDir)\</NuGetPackagesDir>
-      <SpecFlowPackageDir>$(NuGetPackagesDir)@(SpecFlowPackageReference->'%(Identity)\%(Version)')\</SpecFlowPackageDir>
-      <SpecFlowVersion>@(SpecFlowPackageReference->'%(Version)')</SpecFlowVersion>
+      <SpecFlowPackageDir>$(NuGetPackagesDir)\SpecFlow\$(SpecFlowVersion)')\</SpecFlowPackageDir>
       <SpecFlowToolsPath>$(SpecFlowPackageDir)tools\</SpecFlowToolsPath>
     </PropertyGroup>
     
